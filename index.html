@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CountDown</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+      }
+      div {
+        margin: auto;
+        padding: 20px 10px;
+        background-color: yellow;
+        width: 90%;
+        color: black;
+        text-align: center;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      #timer {
+        /* border: 1px solid; */
+        display: inline-block;
+        width: 80px;
+      }
+      @media screen and (max-width:500px) {
+        div{
+          padding: 20px 0;
+          border:5px solid rgb(207, 207, 62);;
+            border-radius: 10px;
+            flex-direction: column;
+            gap: 10px;
+        }
+        h4:first-of-type{
+          /* text-decoration: underline; */
+          border-bottom: 1px solid;
+          padding-bottom: 3px;
+          width: fit-content;
+        }
+        h4:last-of-type{
+          width: 100%;
+          background-color: rgb(207, 207, 62);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h4>LIMITED TIME OFFER</h4>
+      <h4>Ends in : <span id="timer"></span></h4>
+      <h4>GET 10% OFF <small>  Use Code</small> EXAMSTART</h4>
+    </div>
+
+    <script>
+      let hours = 0;
+      let minutes = 1;
+      let seconds = 15;
+      let timer = document.getElementById("timer");
+      timer.innerText = `${hours} : ${minutes} : ${seconds}`;
+      setInterval(() => {
+        if (seconds < 1) {
+          minutes -= 1;
+          seconds = 60;
+        }
+        if (minutes < 0) {
+          minutes = 59;
+          seconds = 60;
+          --hours;
+          if (hours < 0) {
+            hours = 0;
+            minutes = 1;
+            seconds = 15;
+          }
+        }
+        timer.innerText = `${hours} : ${minutes} : ${(seconds -= 1)}`;
+      }, 1000);
+    </script>
+  </body>
+</html>
